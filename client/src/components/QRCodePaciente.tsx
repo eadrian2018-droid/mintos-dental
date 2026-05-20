@@ -1,10 +1,12 @@
-export default function QRCodePaciente() {
+import React from "react";
+import QRCode from "react-qr-code";
 
-  const qrURL =
-    "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://mintos-dental.vercel.app/formulario-paciente";
+const QRCodePaciente = () => {
+
+  const urlFormulario =
+    "https://mintos-dental-q77v.vercel.app";
 
   return (
-
     <div
       className="
         bg-white
@@ -17,48 +19,46 @@ export default function QRCodePaciente() {
         items-center
       "
     >
-
       <h2
         className="
           text-2xl
           font-bold
           text-teal-700
           mb-6
+          text-center
         "
       >
-
-        Escanee para llenar
-        historial clínico
-
+        Escanee para llenar historial clínico
       </h2>
 
-      <img
-
-        src={qrURL}
-
-        alt="QR"
-
-        className="
-          rounded-2xl
-        "
-
+      <QRCode
+        value={urlFormulario}
+        size={180}
       />
+
+      <h3
+        className="
+          text-4xl
+          font-bold
+          text-slate-600
+          mt-6
+          text-center
+        "
+      >
+        Escanee desde su celular
+      </h3>
 
       <p
         className="
-          mt-6
+          mt-4
           text-gray-600
           text-center
         "
       >
-
-        Escanee desde su celular
-        para llenar su historial clínico
-
+        Abra la cámara de su celular y escanee el código QR.
       </p>
-
     </div>
-
   );
+};
 
-}
+export default QRCodePaciente;
