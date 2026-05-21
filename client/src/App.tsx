@@ -505,14 +505,7 @@ function AdminApp() {
 
         }
 
-        {/* FORMULARIO */}
-
-        <div className="bg-white rounded-3xl shadow-xl p-8 mb-10">
-
-          <FormularioPaciente />
-
-        </div>
-
+       
       </div>
 
     </div>
