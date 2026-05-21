@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 import {
-  BrowserRouter,
   Routes,
   Route,
 } from "react-router-dom";
@@ -9,8 +8,6 @@ import {
 import { supabase } from "./lib/supabase";
 
 import Odontograma from "./components/Odontograma";
-
-import FormularioPaciente from "./components/FormularioPaciente";
 
 import FormularioPacientePublico from "./components/FormularioPacientePublico";
 
@@ -505,7 +502,6 @@ function AdminApp() {
 
         }
 
-       
       </div>
 
     </div>
@@ -521,7 +517,7 @@ export default function App() {
     <Routes>
 
       <Route
-        path="/"
+        index
         element={<AdminApp />}
       />
 
