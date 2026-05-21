@@ -1,10 +1,18 @@
 import { useEffect, useState } from "react";
 
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+
 import { supabase } from "./lib/supabase";
 
 import Odontograma from "./components/Odontograma";
 
 import FormularioPaciente from "./components/FormularioPaciente";
+
+import FormularioPacientePublico from "./components/FormularioPacientePublico";
 
 import QRCodePaciente from "./components/QRCodePaciente";
 
@@ -24,7 +32,7 @@ type Paciente = {
 
 };
 
-export default function App() {
+function AdminApp() {
 
   const [nombre,
     setNombre] =
@@ -124,8 +132,6 @@ export default function App() {
 
     if (error) {
 
-      console.log(error);
-
       alert(
         "Error guardando paciente"
       );
@@ -176,8 +182,6 @@ export default function App() {
         );
 
     if (error) {
-
-      console.log(error);
 
       alert(
         "Error guardando expediente"
@@ -248,32 +252,12 @@ export default function App() {
 
   return (
 
-    <div
-      className="
-        min-h-screen
-        bg-gray-100
-        p-6
-      "
-    >
+    <div className="min-h-screen bg-gray-100 p-6">
 
-      <div
-        className="
-          max-w-7xl
-          mx-auto
-        "
-      >
+      <div className="max-w-7xl mx-auto">
 
-        <h1
-          className="
-            text-5xl
-            font-bold
-            text-teal-700
-            mb-10
-          "
-        >
-
+        <h1 className="text-5xl font-bold text-teal-700 mb-10">
           MintOS Dental
-
         </h1>
 
         {/* QR */}
@@ -286,124 +270,64 @@ export default function App() {
 
         {/* NUEVO PACIENTE */}
 
-        <div
-          className="
-            bg-white
-            rounded-3xl
-            shadow-xl
-            p-8
-            mb-10
-          "
-        >
+        <div className="bg-white rounded-3xl shadow-xl p-8 mb-10">
 
-          <h2
-            className="
-              text-3xl
-              font-bold
-              mb-8
-            "
-          >
-
+          <h2 className="text-3xl font-bold mb-8">
             Nuevo Paciente
-
           </h2>
 
-          <div
-            className="
-              grid
-              md:grid-cols-2
-              gap-4
-            "
-          >
+          <div className="grid md:grid-cols-2 gap-4">
 
             <input
-
               value={nombre}
-
               onChange={(e)=>
                 setNombre(
                   e.target.value
                 )
               }
-
               placeholder="Nombre"
-
-              className="
-                border
-                rounded-xl
-                p-4
-              "
-
+              className="border rounded-xl p-4"
             />
 
             <input
-
               value={telefono}
-
               onChange={(e)=>
                 setTelefono(
                   e.target.value
                 )
               }
-
               placeholder="Teléfono"
-
-              className="
-                border
-                rounded-xl
-                p-4
-              "
-
+              className="border rounded-xl p-4"
             />
 
             <input
-
               value={edad}
-
               onChange={(e)=>
                 setEdad(
                   e.target.value
                 )
               }
-
               placeholder="Edad"
-
-              className="
-                border
-                rounded-xl
-                p-4
-              "
-
+              className="border rounded-xl p-4"
             />
 
             <input
-
               value={sexo}
-
               onChange={(e)=>
                 setSexo(
                   e.target.value
                 )
               }
-
               placeholder="Sexo"
-
-              className="
-                border
-                rounded-xl
-                p-4
-              "
-
+              className="border rounded-xl p-4"
             />
 
           </div>
 
           <button
-
             onClick={
               guardarPaciente
             }
-
             className="
               mt-6
               bg-teal-600
@@ -414,53 +338,28 @@ export default function App() {
               rounded-2xl
               font-bold
             "
-
           >
-
             Guardar Paciente
-
           </button>
 
         </div>
 
-        {/* LISTA PACIENTES */}
+        {/* LISTA */}
 
-        <div
-          className="
-            bg-white
-            rounded-3xl
-            shadow-xl
-            p-8
-            mb-10
-          "
-        >
+        <div className="bg-white rounded-3xl shadow-xl p-8 mb-10">
 
-          <h2
-            className="
-              text-3xl
-              font-bold
-              mb-8
-            "
-          >
-
+          <h2 className="text-3xl font-bold mb-8">
             Lista de Pacientes
-
           </h2>
 
           <input
-
             value={busqueda}
-
             onChange={(e)=>
               setBusqueda(
                 e.target.value
               )
             }
-
-            placeholder="
-              Buscar paciente...
-            "
-
+            placeholder="Buscar paciente..."
             className="
               border
               rounded-xl
@@ -468,14 +367,9 @@ export default function App() {
               w-full
               mb-6
             "
-
           />
 
-          <div
-            className="
-              space-y-4
-            "
-          >
+          <div className="space-y-4">
 
             {
 
@@ -483,9 +377,7 @@ export default function App() {
                 .map((p)=>(
 
                   <div
-
                     key={p.id}
-
                     className="
                       border
                       rounded-2xl
@@ -494,50 +386,30 @@ export default function App() {
                       justify-between
                       items-center
                     "
-
                   >
 
                     <div>
 
-                      <h3
-                        className="
-                          text-xl
-                          font-bold
-                        "
-                      >
-
+                      <h3 className="text-xl font-bold">
                         {p.nombre}
-
                       </h3>
 
                       <p>
-
-                        Teléfono:
-                        {" "}
-                        {p.telefono}
-
+                        Teléfono: {p.telefono}
                       </p>
 
                       <p>
-
-                        Edad:
-                        {" "}
-                        {p.edad}
+                        Edad: {p.edad}
                         {" | "}
-                        Sexo:
-                        {" "}
-                        {p.sexo}
-
+                        Sexo: {p.sexo}
                       </p>
 
                     </div>
 
                     <button
-
                       onClick={()=>
                         abrirPaciente(p)
                       }
-
                       className="
                         bg-teal-600
                         hover:bg-teal-700
@@ -546,11 +418,8 @@ export default function App() {
                         py-3
                         rounded-xl
                       "
-
                     >
-
                       Abrir
-
                     </button>
 
                   </div>
@@ -569,45 +438,20 @@ export default function App() {
 
           pacienteAbierto && (
 
-            <div
-              className="
-                bg-white
-                rounded-3xl
-                shadow-xl
-                p-8
-                mb-10
-              "
-            >
+            <div className="bg-white rounded-3xl shadow-xl p-8 mb-10">
 
-              <div
-                className="
-                  flex
-                  justify-between
-                  items-center
-                  mb-6
-                "
-              >
+              <div className="flex justify-between items-center mb-6">
 
-                <h2
-                  className="
-                    text-4xl
-                    font-bold
-                    text-teal-700
-                  "
-                >
-
+                <h2 className="text-4xl font-bold text-teal-700">
                   Expediente Clínico
-
                 </h2>
 
                 <button
-
                   onClick={()=>
                     setPacienteAbierto(
                       null
                     )
                   }
-
                   className="
                     bg-red-500
                     hover:bg-red-600
@@ -616,41 +460,31 @@ export default function App() {
                     py-3
                     rounded-xl
                   "
-
                 >
-
                   Cerrar
-
                 </button>
 
               </div>
 
               <Odontograma
-
                 observacionesDientes={
                   observacionesDientes
                 }
-
                 setObservacionesDientes={
                   setObservacionesDientes
                 }
-
                 estadoDientes={
                   estadoDientes
                 }
-
                 setEstadoDientes={
                   setEstadoDientes
                 }
-
               />
 
               <button
-
                 onClick={
                   guardarExpediente
                 }
-
                 className="
                   mt-8
                   bg-teal-600
@@ -661,11 +495,8 @@ export default function App() {
                   rounded-2xl
                   font-bold
                 "
-
               >
-
                 Guardar Expediente
-
               </button>
 
             </div>
@@ -676,15 +507,7 @@ export default function App() {
 
         {/* FORMULARIO */}
 
-        <div
-          className="
-            bg-white
-            rounded-3xl
-            shadow-xl
-            p-8
-            mb-10
-          "
-        >
+        <div className="bg-white rounded-3xl shadow-xl p-8 mb-10">
 
           <FormularioPaciente />
 
@@ -693,6 +516,32 @@ export default function App() {
       </div>
 
     </div>
+
+  );
+
+}
+
+export default function App() {
+
+  return (
+
+    <BrowserRouter>
+
+      <Routes>
+
+        <Route
+          path="/"
+          element={<AdminApp />}
+        />
+
+        <Route
+          path="/formulario"
+          element={<FormularioPacientePublico />}
+        />
+
+      </Routes>
+
+    </BrowserRouter>
 
   );
 
