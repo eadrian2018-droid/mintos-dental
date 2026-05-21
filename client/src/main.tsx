@@ -1,15 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
+import {
+  BrowserRouter,
+} from "react-router-dom";
+
 import App from "./App";
 
-import FormularioPaciente
-from "./components/FormularioPaciente";
-
 import "./index.css";
-
-const ruta =
-  window.location.pathname;
 
 ReactDOM.createRoot(
   document.getElementById("root")!
@@ -17,19 +15,11 @@ ReactDOM.createRoot(
 
   <React.StrictMode>
 
-    {
-
-      ruta === "/formulario"
-
-      ?
-
-      <FormularioPaciente />
-
-      :
+    <BrowserRouter>
 
       <App />
 
-    }
+    </BrowserRouter>
 
   </React.StrictMode>
 

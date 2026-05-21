@@ -10,9 +10,7 @@ export default function FormularioPacientePublico() {
           Historial Clínico Dental
         </h1>
 
-        {/* DATOS PERSONALES */}
-
-        <div className="mb-10">
+        <div className="mb-8">
 
           <h2 className="text-2xl font-bold mb-4">
             Datos Personales
@@ -48,46 +46,36 @@ export default function FormularioPacientePublico() {
 
         </div>
 
-        {/* HISTORIAL MÉDICO */}
-
-        <div className="mb-10">
+        <div className="mb-8">
 
           <h2 className="text-2xl font-bold mb-4">
             Historial Médico
           </h2>
 
           <textarea
-            placeholder="Describa enfermedades, alergias, medicamentos, etc."
+            placeholder="Alergias, enfermedades, medicamentos..."
             className="w-full border rounded-xl p-4 h-40"
           />
 
         </div>
 
-        {/* CONSENTIMIENTO */}
-
-        <div className="mb-10">
+        <div className="mb-8">
 
           <h2 className="text-2xl font-bold mb-4">
             Consentimiento
           </h2>
 
-          <p className="text-gray-700 mb-4">
-            Autorizo el tratamiento dental y confirmo que la información proporcionada es correcta.
-          </p>
-
           <label className="flex items-center gap-3">
 
             <input type="checkbox" />
 
-            Acepto el consentimiento
+            Confirmo que la información es correcta.
 
           </label>
 
         </div>
 
-        {/* FIRMA */}
-
-        <div className="mb-10">
+        <div className="mb-8">
 
           <h2 className="text-2xl font-bold mb-4">
             Firma
@@ -95,7 +83,7 @@ export default function FormularioPacientePublico() {
 
           <input
             type="text"
-            placeholder="Escriba su nombre completo como firma"
+            placeholder="Escriba su nombre completo"
             className="w-full border rounded-xl p-3"
           />
 
@@ -109,7 +97,6 @@ export default function FormularioPacientePublico() {
             px-8
             py-4
             rounded-2xl
-            text-xl
             font-bold
             w-full
           "
@@ -122,4 +109,5 @@ export default function FormularioPacientePublico() {
     </div>
 
   );
+
 }

@@ -518,23 +518,19 @@ export default function App() {
 
   return (
 
-    <BrowserRouter>
+    <Routes>
 
-      <Routes>
+      <Route
+        path="/"
+        element={<AdminApp />}
+      />
 
-        <Route
-          path="/"
-          element={<AdminApp />}
-        />
+      <Route
+        path="/formulario"
+        element={<FormularioPacientePublico />}
+      />
 
-        <Route
-          path="/formulario"
-          element={<FormularioPacientePublico />}
-        />
-
-      </Routes>
-
-    </BrowserRouter>
+    </Routes>
 
   );
 
