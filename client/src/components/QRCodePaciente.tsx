@@ -1,7 +1,9 @@
+import QRCode from "react-qr-code";
+
 const QRCodePaciente = () => {
 
   const urlFormulario =
-    "https://mintos-dental-q77v-haqwpylhj-eadrian2018-droids-projects.vercel.app/";
+    "https://mintos-dental-q77v-4w0x2ube6-eadrian2018-droids-projects.vercel.app/";
 
   return (
     <div
@@ -29,10 +31,9 @@ const QRCodePaciente = () => {
         Escanee para llenar historial clínico
       </h2>
 
-      <img
-        src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(urlFormulario)}`}
-        alt="QR"
-        className="rounded-2xl"
+      <QRCode
+        value={urlFormulario}
+        size={220}
       />
 
       <p
